@@ -1,0 +1,26 @@
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Teemo.CoolQ.PocketPlugins.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Teemo.CoolQ.PocketPlugins.pdb
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Autofac.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Newbe.CQP.Framework.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.panel.resources
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.csproj.GenerateResource.Cache
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.pdb
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.Resource1.resources
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.csproj.CoreCompileInputs.cache
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.csprojResolveAssemblyReference.cache
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Teemo.CoolQ.PocketPlugins.dll
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Teemo.CoolQ.PocketPlugins.pdb
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Autofac.dll
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Newbe.CQP.Framework.dll
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Newtonsoft.Json.dll
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Debug\Newtonsoft.Json.xml
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.Resource1.resources
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.panel.resources
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.csproj.GenerateResource.Cache
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.csproj.CoreCompileInputs.cache
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.dll
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.pdb
+D:\源代码\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Debug\Teemo.CoolQ.PocketPlugins.csprojResolveAssemblyReference.cache
