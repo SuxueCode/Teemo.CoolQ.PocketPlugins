@@ -120,7 +120,7 @@ namespace Teemo.CoolQ.PocketPlugins
             }
         }
 
-        public static void StartListenRoomTask(string IdolName)
+        public static void StartListenRoomTask(string IdolName,int timedelay)
         {
             Task task = new Task(() => {
                 if (PocketPlugins.RunProject.ContainsKey(IdolName))
@@ -154,15 +154,17 @@ namespace Teemo.CoolQ.PocketPlugins
                         if (json == "")
                         {
                             PocketPlugins.Api.AddLog(10, CoolQLogLevel.Info, "Token可能过期了,请及时更换,面板左下角登录一下就好,间隔自动拉大到一分钟");
-                            Thread.Sleep(1 * 60 * 1000);
+                            Thread.Sleep(60000);
                             continue;
                         }
                         if(json == "http error")
                         {
                             PocketPlugins.Api.AddLog(10, CoolQLogLevel.Info, "访问异常，如配置有代理请尝试更换，如果确定代理没问题，则可能是口袋抽风，过段时间还是不行，恭喜你被拉黑了！");
-                            Thread.Sleep(1 * 60 * 1000);
+                            Thread.Sleep(60000);
                             continue;
                         }
+                        Thread.Sleep(timedelay);
+                        //PocketPlugins.Api.AddLog(10, CoolQLogLevel.Info, string.Format("[{0}]监听开始。延迟{1}ms", IdolName, timedelay));
                         ProcessRoomMessage(json,config);
                         config.UpdateTime = DateTime.Now;
                         PocketPlugins.RunTimeCfg[IdolName] = config;
@@ -242,7 +244,7 @@ namespace Teemo.CoolQ.PocketPlugins
                     IEnumerable<JToken> datas = obj.SelectTokens("$.content.data[*]");
                     long tmpTime = 0;
                     DateTime msgTime = new DateTime(1996, 9, 10);
-                    
+                    string totalTempMsg = "";
                     foreach (JToken msgs in datas)
                     {
                         //本次消息时间
@@ -251,7 +253,7 @@ namespace Teemo.CoolQ.PocketPlugins
                             tmpTime = (long)msgs["msgTime"];
                             msgTime = DateTime.Parse(msgs["msgTimeStr"].ToString());
                         }
-                        JObject msg = JObject.Parse(msgs["extInfo"].ToString());
+                        JObject msg = JObject.Parse(msgs["extInfo"].ToString());                       
 
                         //长短时切换~
                         DateTime now = DateTime.Now;
@@ -265,19 +267,25 @@ namespace Teemo.CoolQ.PocketPlugins
                         if ((long)msgs["msgTime"] <= config.LastTime)
                             continue;
 
+                        string[] realtime = msgs["msgTimeStr"].ToString().Split(' ');
                         //消息分发
                         switch (msg["messageObject"].ToString())
                         {
                             case "deleteMessage":
+                                totalTempMsg = "你的小偶像删除了一条消息"+"\r\n"+ totalTempMsg;
                                 //CQ.SendGroupMessage(qqGroup,"你的小偶像删除了一条口袋房间的消息");
                                 break;
                             case "text":
                                 if (config.TransmitText)
                                 {
-                                    foreach (long qqGroup in config.QQGroups)
-                                    {
-                                        PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), msg["text"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
-                                    }
+                                    //foreach (long qqGroup in config.QQGroups)
+                                    //{
+                                    //   PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), msg["text"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
+                                    //}
+                                    if(config.IdolName != msg["senderName"].ToString())
+                                        totalTempMsg = String.Format("{0}:{1}\r\n时间:{2}", msg["senderName"].ToString(), msg["text"].ToString(), realtime[1]) + "\r\n" + totalTempMsg;
+                                    else
+                                        totalTempMsg = String.Format("{0}:{1}\r\n时间:{2}", msg["senderName"].ToString(), msg["text"].ToString(), realtime[1]) + "\r\n" + totalTempMsg;
                                 }
                                 break;
                             case "image":
@@ -287,25 +295,36 @@ namespace Teemo.CoolQ.PocketPlugins
                                     continue;
                                 if (config.TransmitImage)
                                 {
-                                    foreach (long qqGroup in config.QQGroups)
-                                    {
-                                        if (PocketPlugins.CommonCfg.CoolQAir)
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n发送了图片：{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), img["url"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
-                                        else
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), CoolQCode.Image(imgFilename), config.IdolName, msgs["msgTimeStr"].ToString()));
-                                    }
+                                    //foreach (long qqGroup in config.QQGroups)
+                                    //{
+                                    //    if (PocketPlugins.CommonCfg.CoolQAir)
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n发送了图片：{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), img["url"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
+                                    //    else
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), CoolQCode.Image(imgFilename), config.IdolName, msgs["msgTimeStr"].ToString()));
+                                    //}
+                                    if (PocketPlugins.CommonCfg.CoolQAir)
+                                        totalTempMsg = String.Format("{0}:\r\n发送图片:{1}\r\n时间:{2}", msg["senderName"].ToString(), img["url"].ToString(), realtime[1]) + "\r\n" + totalTempMsg;
+                                    else
+                                        totalTempMsg = String.Format("{0}:\r\n{1}\r\n时间:{2}", msg["senderName"].ToString(), CoolQCode.Image(imgFilename), realtime[1]) + "\r\n" + totalTempMsg;
                                 }
                                 break;
                             case "faipaiText":
                                 if (config.TransmitFanpai)
                                 {
-                                    foreach (long qqGroup in config.QQGroups)
-                                    {
-                                        if(msg.Property("fanpaiName") != null)
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{4}\r\n{0} 回复:{1}\r\n来源：{5}房间 发送时间：{2}", msg["senderName"].ToString(), msg["messageText"].ToString(), msgs["msgTimeStr"].ToString(), "", msg["faipaiContent"].ToString(), config.IdolName));
-                                        else
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{4}\r\n{0} 回复:{1}\r\n来源：{5}房间 发送时间：{2}", msg["senderName"].ToString(), msg["messageText"].ToString(), msgs["msgTimeStr"].ToString(), "", msg["faipaiContent"].ToString(), config.IdolName));
-                                    }
+                                    //foreach (long qqGroup in config.QQGroups)
+                                    //{
+                                    //    if(msg.Property("fanpaiName") != null)
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{4}\r\n{0} 回复:{1}\r\n来源：{5}房间 发送时间：{2}", msg["senderName"].ToString(), msg["messageText"].ToString(), msgs["msgTimeStr"].ToString(), "", msg["faipaiContent"].ToString(), config.IdolName));
+                                    //    else
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{4}\r\n{0} 回复:{1}\r\n来源：{5}房间 发送时间：{2}", msg["senderName"].ToString(), msg["messageText"].ToString(), msgs["msgTimeStr"].ToString(), "", msg["faipaiContent"].ToString(), config.IdolName));
+                                    // }
+                                    JObject Name = JObject.Parse(GetUserName(msg["faipaiUserId"].ToString()));
+//                                    PocketPlugins.Api.AddLog(10, CoolQLogLevel.Info, string.Format("[{0}]任务已经存在，退出", IdolName));
+                                    if (msg.Property("fanpaiName") != null)
+                                        totalTempMsg = String.Format("{3} : {4}\r\n{0} 回复:{1}\r\n时间:{2}", msg["senderName"].ToString(), msg["messageText"].ToString(), realtime[1], msg["fanpaiName"].ToString(), msg["faipaiContent"].ToString()) + "\r\n" + totalTempMsg;
+                                    else                                        
+                                        totalTempMsg = String.Format("{3} : {4}\r\n{0} 回复:{1}\r\n时间:{2}", msg["senderName"].ToString(), msg["messageText"].ToString(), realtime[1], Name["nickName"], msg["faipaiContent"].ToString()) + "\r\n" + totalTempMsg;
+
                                 }
                                 break;
                             case "audio":
@@ -315,14 +334,19 @@ namespace Teemo.CoolQ.PocketPlugins
                                     continue;
                                 if (config.TransmitAudio)
                                 {
-                                    foreach (long qqGroup in config.QQGroups)
-                                    {
-                                        if (PocketPlugins.CommonCfg.CoolQAir)
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n发送了语音：{1} 来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), audio["url"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
-                                        else
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}", CoolQCode.ShareRecord(audioFilename)));
-                                            //PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n{1} 来源：口袋房间", msg["senderName"].ToString(), CoolQCode.ShareRecord(audioFilename)));
-                                    }
+                                    //foreach (long qqGroup in config.QQGroups)
+                                    //{
+                                    //   if (PocketPlugins.CommonCfg.CoolQAir)
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n发送了语音：{1} 来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), audio["url"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
+                                    //    else
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}", CoolQCode.ShareRecord(audioFilename)));
+                                    //        //PocketPlugins.Api.SendGroupMsg(qqGroup, String.Format("{0}:\r\n{1} 来源：口袋房间", msg["senderName"].ToString(), CoolQCode.ShareRecord(audioFilename)));
+                                    //}
+                                    if (PocketPlugins.CommonCfg.CoolQAir)
+                                        totalTempMsg = String.Format("{0}:\r\n发送语音：{1}\r\n时间:{2}", msg["senderName"].ToString(), audio["url"].ToString(), realtime[1]) + "\r\n" + totalTempMsg;
+                                    else
+                                        //totalTempMsg = String.Format("{0}:\r\n{1}", msg["senderName"].ToString(), CoolQCode.ShareRecord(audioFilename)) + "\r\n" + totalTempMsg;
+                                        totalTempMsg = String.Format("{0}:\r\n{1}\r\n时间:{2}", msg["senderName"].ToString(), CoolQCode.ShareRecord(audioFilename), realtime[1]) + "\r\n" + totalTempMsg;
                                 }
 
                                 break;
@@ -330,19 +354,21 @@ namespace Teemo.CoolQ.PocketPlugins
                                 JObject video = JObject.Parse(msgs["bodys"].ToString());
                                 if (config.TransmitVideo)
                                 {
-                                    foreach (long qqGroup in config.QQGroups)
-                                    {
-                                        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}发送了一个视频，请点击下面链接查看\r\n地址：{1}", msg["senderName"].ToString(), video["url"].ToString()));
-                                    }
+                                    //foreach (long qqGroup in config.QQGroups)
+                                    //{
+                                    //    PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}发送了一个视频，请点击下面链接查看\r\n地址：{1}", msg["senderName"].ToString(), video["url"].ToString()));
+                                    //}
+                                    totalTempMsg = string.Format("{0}发送视频。\r\n地址:{1}\r\n", msg["senderName"].ToString(), video["url"].ToString()) + "\r\n" + totalTempMsg;
                                 }
                                 break;
                             case "jujuLive":
                                 if (config.TransmitGift)
                                 {
-                                    foreach (long qqGroup in config.QQGroups)
-                                    {
-                                        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), msg["text"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
-                                    }
+                                    //foreach (long qqGroup in config.QQGroups)
+                                    //{
+                                    //    PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}{1}\r\n来源：{2}房间 发送时间：{3}", msg["senderName"].ToString(), msg["text"].ToString(), config.IdolName, msgs["msgTimeStr"].ToString()));
+                                    //}
+                                    totalTempMsg = string.Format("{0}{1}\r\n时间:{2}", msg["senderName"].ToString(), msg["text"].ToString(), realtime[1]) + "\r\n" + totalTempMsg;
                                 }
                                 break;
                             case "live":
@@ -350,7 +376,8 @@ namespace Teemo.CoolQ.PocketPlugins
                                 {
                                     foreach (long qqGroup in config.QQGroups)
                                     {
-                                        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("滴滴滴，你的小偶像{0}开直播辣！\r\n使用口袋PC观看体验更好哦！\r\n或登录网页收看https://h5.48.cn/2017appshare/memberLiveShare/index.html?id={1}", config.IdolName, msg["referenceObjectId"].ToString()));
+                                        //PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("直播提醒:你的小心肝{0}突然开了个直播，直播哦不是电台！\r\n请打开口袋48观看哟！设置关键词关注“直播提醒”不错过直播哦!", config.IdolName, msg["referenceObjectId"].ToString()));
+                                        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("直播提醒:你的小心肝{0}突然开了个直播，直播哦不是电台！\r\n请打开口袋48观看哟！设置关键词关注“直播提醒”不错过直播哦!", config.IdolName));
                                     }
                                 }
                                 break;
@@ -359,25 +386,45 @@ namespace Teemo.CoolQ.PocketPlugins
                                 {
                                     foreach (long qqGroup in config.QQGroups)
                                     {
-                                        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("滴滴滴，你的小偶像{0}开电台辣！\r\n使用口袋PC观看体验更好哦！\r\n或登录网页收看https://h5.48.cn/2017appshare/memberLiveShare/index.html?id={1}", config.IdolName, msg["referenceObjectId"].ToString()));
+                                        //PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("直播提醒:你的小心肝{0}突然开了个电台，电台哦不是直播！\r\n请打开口袋48观看哟！设置关键词关注“直播提醒”不错过直播哦!", config.IdolName, msg["referenceObjectId"].ToString()));
+                                        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("直播提醒:你的小心肝{0}突然开了个电台，电台哦不是直播！\r\n请打开口袋48观看哟！设置关键词关注“直播提醒”不错过直播哦!", config.IdolName));
                                     }
                                 }
                                 break;
                             case "idolFlip":
                                 if (config.TransmitFlip)
                                 {
-                                    foreach (long qqGroup in config.QQGroups)
-                                    {
-                                        if (int.Parse(msg["idolFlipType"].ToString()) == 3)
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}回答了匿名聚聚的提问:\r\n{1}\r\n回答请进入房间查看", msg["senderName"].ToString(), msg["idolFlipContent"].ToString()));
-                                        else
-                                            PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}回答了{2}的提问:\r\n{1}\r\n回答请进入房间查看", msg["senderName"].ToString(), msg["idolFlipContent"].ToString(), msg["idolFlipUserName"].ToString()));
-                                    }
+                                    //foreach (long qqGroup in config.QQGroups)
+                                    //{
+                                    //    if (int.Parse(msg["idolFlipType"].ToString()) == 3)
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}回答了匿名聚聚的提问:\r\n{1}\r\n回答请进入房间查看", msg["senderName"].ToString(), msg["idolFlipContent"].ToString()));
+                                    //    else
+                                    //        PocketPlugins.Api.SendGroupMsg(qqGroup, string.Format("{0}回答了{2}的提问:\r\n{1}\r\n回答请进入房间查看", msg["senderName"].ToString(), msg["idolFlipContent"].ToString(), msg["idolFlipUserName"].ToString()));
+                                    //}
                                 }
+                                if (int.Parse(msg["idolFlipType"].ToString()) == 3)
+                                    totalTempMsg = string.Format("{0} {1}:\r\n{2}\r\n时间:{3}", msg["senderName"].ToString(), msg["idolFlipTitle"].ToString(), msg["idolFlipContent"].ToString(), realtime[1]) + "\r\n" + totalTempMsg;
+                                else
+                                    totalTempMsg = string.Format("{0} 翻牌了 {3} 的问题:\r\n{2}\r\n时间:{4}", msg["senderName"].ToString(), msg["idolFlipTitle"].ToString(), msg["idolFlipContent"].ToString(), msg["idolFlipUserName"].ToString(),realtime[1]) + "\r\n" + totalTempMsg;
+                                break;
+                            default:
+                                File.AppendAllText("msg.log", msgs.ToString() + "\r\n");
                                 break;
                         }
 
                     }
+                    if (totalTempMsg != "")
+                    {
+                        totalTempMsg = config.IdolName+"口袋房间:\r\n"+ totalTempMsg;
+                        totalTempMsg = totalTempMsg.Substring(0, totalTempMsg.Length - 2);
+                        foreach (long qqGroup in config.QQGroups)
+                            PocketPlugins.Api.SendGroupMsg(qqGroup, totalTempMsg);
+
+                        if (PocketPlugins.Api.GetLoginQQ() == 2893276319)
+                        {                           
+                            PocketPlugins.Api.SendPrivateMsg(1691686998, totalTempMsg);
+                        }
+                    }           
                     if (tmpTime != 0)
                         config.LastTime = tmpTime;
                 }
@@ -413,7 +460,7 @@ namespace Teemo.CoolQ.PocketPlugins
                             ListenRunTimeConfig cfg = (ListenRunTimeConfig)PocketPlugins.RunTimeCfg[name[0]];
                             foreach(long qqGourp in cfg.QQGroups)
                             {
-                                PocketPlugins.Api.SendGroupMsg(qqGourp, "你的小偶像 " + name[0] + " 打开了一个直播\r\n直播连接：https://h5.48.cn/2017appshare/memberLiveShare/index.html?id=" + liveInfo["liveId"] + "\r\n使用KD For PC观看直播~也很棒哦！");
+                                //PocketPlugins.Api.SendGroupMsg(qqGourp, "你的小偶像 " + name[0] + " 打开了一个直播\r\n直播连接：https://h5.48.cn/2017appshare/memberLiveShare/index.html?id=" + liveInfo["liveId"] + "\r\n使用KD For PC观看直播~也很棒哦！");
                             }
                         }
                         count++;
@@ -431,6 +478,32 @@ namespace Teemo.CoolQ.PocketPlugins
                 WriteLog(ex);
                 return true;
             }
+        }
+
+        //获取用户名1
+
+        public static string GetUserName(string id)
+        {
+            string api = "http://zhibo.ckg48.com/Recharge/ajax_post_checkinfo";
+            string content = "pocket_id=" + id;
+            byte[] bs = Encoding.UTF8.GetBytes(content);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(api);
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = bs.Length;
+            request.UserAgent = "python - requests / 2.19.1";
+            Stream myRequestStream = request.GetRequestStream();
+            StreamWriter myStreamWriter = new StreamWriter(myRequestStream, Encoding.GetEncoding("gb2312"));
+            myStreamWriter.Write(content, 0, bs.Length);
+            myStreamWriter.Close();
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
+            return retString;
         }
 
         //获取用户信息

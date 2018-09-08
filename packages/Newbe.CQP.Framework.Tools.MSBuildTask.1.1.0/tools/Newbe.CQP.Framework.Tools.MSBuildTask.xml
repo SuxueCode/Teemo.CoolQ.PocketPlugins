@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Newbe.CQP.Framework.Tools.MSBuildTask</name>
+    </assembly>
+    <members>
+        <member name="T:Newbe.CQP.Framework.Tools.MSBuildTask.NewbePackTask">
+            <summary>
+            Newbe插件打包任务
+            </summary>
+        </member>
+        <member name="P:Newbe.CQP.Framework.Tools.MSBuildTask.NewbePackTask.ProjectDirectory">
+            <summary>
+            生成配置
+            </summary>
+        </member>
+        <member name="P:Newbe.CQP.Framework.Tools.MSBuildTask.NewbePackTask.Configuration">
+            <summary>
+            生成配置
+            </summary>
+        </member>
+        <member name="P:Newbe.CQP.Framework.Tools.MSBuildTask.NewbePackTask.NewbePluginName">
+            <summary>
+            插件名称
+            </summary>
+        </member>
+        <member name="M:Newbe.CQP.Framework.Tools.MSBuildTask.NewbePackTask.Execute">
+            <summary>
+            运行任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.CQP.Framework.Tools.MSBuildTask.NewbePackTask.DirectoryCopy(System.String,System.String,System.Boolean)">
+            <summary>
+            地柜复制文件夹内容
+            </summary>
+            <param name="sourceDirName"></param>
+            <param name="destDirName"></param>
+            <param name="copySubDirs"></param>
+        </member>
+    </members>
+</doc>

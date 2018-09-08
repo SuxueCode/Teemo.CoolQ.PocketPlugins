@@ -82,6 +82,7 @@
             this.txt_longdelay = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
+            this.cp_gift = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,16 +90,16 @@
             // 
             this.list_listen.FormattingEnabled = true;
             this.list_listen.ItemHeight = 12;
-            this.list_listen.Location = new System.Drawing.Point(12, 41);
+            this.list_listen.Location = new System.Drawing.Point(12, 17);
             this.list_listen.Name = "list_listen";
-            this.list_listen.Size = new System.Drawing.Size(233, 292);
+            this.list_listen.Size = new System.Drawing.Size(233, 280);
             this.list_listen.TabIndex = 0;
             this.list_listen.SelectedIndexChanged += new System.EventHandler(this.list_listen_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Location = new System.Drawing.Point(13, 315);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 1;
@@ -171,7 +172,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(125, 12);
             this.label5.TabIndex = 9;
-            this.label5.Text = "监听请按一下步骤走：";
+            this.label5.Text = "监听请按以下步骤走：";
             // 
             // txt_idolname
             // 
@@ -223,6 +224,7 @@
             this.txt_roomdelay.Name = "txt_roomdelay";
             this.txt_roomdelay.Size = new System.Drawing.Size(100, 21);
             this.txt_roomdelay.TabIndex = 15;
+            this.txt_roomdelay.TextChanged += new System.EventHandler(this.txt_roomdelay_TextChanged);
             // 
             // label8
             // 
@@ -354,17 +356,17 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(278, 399);
+            this.label15.Location = new System.Drawing.Point(665, 385);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(552, 12);
+            this.label15.Size = new System.Drawing.Size(162, 12);
             this.label15.TabIndex = 31;
-            this.label15.Text = "教学都到这个地步了，还不会我也没办法了，真鸡儿丢人，退群吧！右边还请多投食，谢谢！->";
+            this.label15.Text = "右边还请多投食，谢谢！->";
             // 
             // btn_idoladd
             // 
-            this.btn_idoladd.Location = new System.Drawing.Point(278, 349);
+            this.btn_idoladd.Location = new System.Drawing.Point(480, 62);
             this.btn_idoladd.Name = "btn_idoladd";
-            this.btn_idoladd.Size = new System.Drawing.Size(75, 37);
+            this.btn_idoladd.Size = new System.Drawing.Size(75, 23);
             this.btn_idoladd.TabIndex = 32;
             this.btn_idoladd.Text = "添加";
             this.btn_idoladd.UseVisualStyleBackColor = true;
@@ -372,9 +374,9 @@
             // 
             // btn_run
             // 
-            this.btn_run.Location = new System.Drawing.Point(480, 349);
+            this.btn_run.Location = new System.Drawing.Point(539, 368);
             this.btn_run.Name = "btn_run";
-            this.btn_run.Size = new System.Drawing.Size(75, 37);
+            this.btn_run.Size = new System.Drawing.Size(120, 37);
             this.btn_run.TabIndex = 33;
             this.btn_run.Text = "运行";
             this.btn_run.UseVisualStyleBackColor = true;
@@ -383,7 +385,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(278, 430);
+            this.label16.Location = new System.Drawing.Point(665, 44);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 12);
             this.label16.TabIndex = 34;
@@ -391,16 +393,16 @@
             // 
             // txt_proxy
             // 
-            this.txt_proxy.Location = new System.Drawing.Point(341, 426);
+            this.txt_proxy.Location = new System.Drawing.Point(728, 40);
             this.txt_proxy.Name = "txt_proxy";
-            this.txt_proxy.Size = new System.Drawing.Size(173, 21);
+            this.txt_proxy.Size = new System.Drawing.Size(145, 21);
             this.txt_proxy.TabIndex = 35;
             // 
             // btn_configsave
             // 
-            this.btn_configsave.Location = new System.Drawing.Point(581, 349);
+            this.btn_configsave.Location = new System.Drawing.Point(407, 368);
             this.btn_configsave.Name = "btn_configsave";
-            this.btn_configsave.Size = new System.Drawing.Size(75, 37);
+            this.btn_configsave.Size = new System.Drawing.Size(120, 37);
             this.btn_configsave.TabIndex = 36;
             this.btn_configsave.Text = "保存配置";
             this.btn_configsave.UseVisualStyleBackColor = true;
@@ -408,9 +410,9 @@
             // 
             // btn_loadconfig
             // 
-            this.btn_loadconfig.Location = new System.Drawing.Point(682, 349);
+            this.btn_loadconfig.Location = new System.Drawing.Point(276, 368);
             this.btn_loadconfig.Name = "btn_loadconfig";
-            this.btn_loadconfig.Size = new System.Drawing.Size(75, 37);
+            this.btn_loadconfig.Size = new System.Drawing.Size(120, 37);
             this.btn_loadconfig.TabIndex = 37;
             this.btn_loadconfig.Text = "加载配置";
             this.btn_loadconfig.UseVisualStyleBackColor = true;
@@ -418,7 +420,7 @@
             // 
             // btn_proxyapply
             // 
-            this.btn_proxyapply.Location = new System.Drawing.Point(522, 424);
+            this.btn_proxyapply.Location = new System.Drawing.Point(879, 38);
             this.btn_proxyapply.Name = "btn_proxyapply";
             this.btn_proxyapply.Size = new System.Drawing.Size(75, 23);
             this.btn_proxyapply.TabIndex = 38;
@@ -444,9 +446,9 @@
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(379, 349);
+            this.btn_delete.Location = new System.Drawing.Point(170, 307);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(75, 37);
+            this.btn_delete.Size = new System.Drawing.Size(75, 30);
             this.btn_delete.TabIndex = 42;
             this.btn_delete.Text = "删除";
             this.btn_delete.UseVisualStyleBackColor = true;
@@ -454,7 +456,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(834, 341);
+            this.pictureBox1.Location = new System.Drawing.Point(838, 345);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(104, 104);
             this.pictureBox1.TabIndex = 43;
@@ -576,11 +578,22 @@
             this.label24.TabIndex = 55;
             this.label24.Text = "20180205";
             // 
+            // cp_gift
+            // 
+            this.cp_gift.AutoSize = true;
+            this.cp_gift.Location = new System.Drawing.Point(836, 230);
+            this.cp_gift.Name = "cp_gift";
+            this.cp_gift.Size = new System.Drawing.Size(48, 16);
+            this.cp_gift.TabIndex = 56;
+            this.cp_gift.Text = "礼物";
+            this.cp_gift.UseVisualStyleBackColor = true;
+            // 
             // panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 475);
+            this.Controls.Add(this.cp_gift);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.txt_longdelay);
             this.Controls.Add(this.label18);
@@ -636,7 +649,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.list_listen);
             this.Name = "panel";
-            this.Text = "监听面板";
+            this.Text = "监听面板3.0.9";
+            this.Load += new System.EventHandler(this.panel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -699,5 +713,6 @@
         private System.Windows.Forms.TextBox txt_longdelay;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.CheckBox cp_gift;
     }
 }

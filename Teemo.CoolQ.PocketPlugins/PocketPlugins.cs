@@ -49,19 +49,20 @@ namespace Teemo.CoolQ.PocketPlugins
                         {
                             send += string.Format("\r\n{0}:{1}[{2}]", cfg.IdolName, cfg.UpdateTime.ToString(), key);
                         }
-                        CoolQApi.SendGroupMsg(fromGroup, send);
+                        //CoolQApi.SendGroupMsg(fromGroup, send);
                     }
                 }
 
-                if (cmd[1] == "restart")
-                {
-                    string key = cmd[2];
-                    if (RunProject.ContainsKey(key))
-                        RunProject.Remove(key);
+               // if (cmd[1] == "重启")
+               // {
+                    //string key = cmd[2];
+                    //if (RunProject.ContainsKey(key))
+                    //    RunProject.Remove(key);
 
-                    Common.StartListenRoomTask(key);
-                    CoolQApi.SendGroupMsg(fromGroup, key + "任务重建完毕，请查看酷Q日志配合time命令查看是否恢复任务");
-                }
+                    //Common.StartListenRoomTask(key);
+                    //PocketPlugins.Api.AddLog(10, CoolQLogLevel.Info, "任务重建完毕，请查看酷Q日志配合time命令查看是否恢复任务");
+                    //CoolQApi.SendGroupMsg(fromGroup, key + "任务重建完毕，请查看酷Q日志配合time命令查看是否恢复任务");
+               // }
                 
             }
             return base.ProcessGroupMessage(subType, sendTime, fromGroup, fromQq, fromAnonymous, msg, font);
