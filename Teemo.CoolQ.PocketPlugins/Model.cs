@@ -15,6 +15,7 @@ namespace Teemo.CoolQ.PocketPlugins
         public static long Interval { get; set; } = 60;
         public static int ShortDelay { get; set; }
         public static int LongDelay { get; set; }
+        public bool AutoStart { get; set; }
     }
     public class UserInfo
     {
@@ -60,6 +61,7 @@ namespace Teemo.CoolQ.PocketPlugins
         //public int LiveDelay { get; set; }
         public bool CoolQAir { get; set; }
         public bool LiveAtAll { get; set; }
+        public bool AutoStart { get; set; }
     }
 
     public class PocketProxy

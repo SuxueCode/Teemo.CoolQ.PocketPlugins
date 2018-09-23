@@ -507,13 +507,17 @@ namespace Teemo.CoolQ.PocketPlugins
         }
 
         //获取用户信息
-        public static string GetUserInfo(string user,string pwd)
+        public static string GetUserInfo(string user,string pwd,string IMEI)
         {
             string api = "https://puser.48.cn/usersystem/api/user/v1/login/phone";
             HttpRequestMessage req = new HttpRequestMessage();
             req.Method = HttpMethod.Post;
             req.RequestUri = new Uri(api);
-            req.Headers.Add("IMEI", PocketSetting.IMEI);
+            if (IMEI == "")
+                req.Headers.Add("IMEI", IMEI);
+            else
+                req.Headers.Add("IMEI", PocketSetting.IMEI);
+
             req.Headers.Add("Version", PocketVersion);
             req.Headers.Add("User-Agent", PocketAgent);
             req.Headers.Add("os", "Android");

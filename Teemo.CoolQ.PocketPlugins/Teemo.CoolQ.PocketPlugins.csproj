@@ -73,7 +73,9 @@
   <ItemGroup>
     <None Include="Newbe.CQP.Framework.props" />
     <None Include="Newbe.CQP.Framework\ForPlugin\Teemo.CoolQ.PocketPlugins.json" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Newbe.CQP.Framework\ForMain\Autofac.dll" />

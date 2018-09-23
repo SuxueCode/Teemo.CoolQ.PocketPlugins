@@ -83,6 +83,11 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.cp_gift = new System.Windows.Forms.CheckBox();
+            this.AutoStart = new System.Windows.Forms.CheckBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -356,7 +361,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(665, 385);
+            this.label15.Location = new System.Drawing.Point(665, 368);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(162, 12);
             this.label15.TabIndex = 31;
@@ -374,7 +379,7 @@
             // 
             // btn_run
             // 
-            this.btn_run.Location = new System.Drawing.Point(539, 368);
+            this.btn_run.Location = new System.Drawing.Point(539, 351);
             this.btn_run.Name = "btn_run";
             this.btn_run.Size = new System.Drawing.Size(120, 37);
             this.btn_run.TabIndex = 33;
@@ -400,7 +405,7 @@
             // 
             // btn_configsave
             // 
-            this.btn_configsave.Location = new System.Drawing.Point(407, 368);
+            this.btn_configsave.Location = new System.Drawing.Point(407, 351);
             this.btn_configsave.Name = "btn_configsave";
             this.btn_configsave.Size = new System.Drawing.Size(120, 37);
             this.btn_configsave.TabIndex = 36;
@@ -410,7 +415,7 @@
             // 
             // btn_loadconfig
             // 
-            this.btn_loadconfig.Location = new System.Drawing.Point(276, 368);
+            this.btn_loadconfig.Location = new System.Drawing.Point(276, 351);
             this.btn_loadconfig.Name = "btn_loadconfig";
             this.btn_loadconfig.Size = new System.Drawing.Size(120, 37);
             this.btn_loadconfig.TabIndex = 37;
@@ -456,7 +461,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(838, 345);
+            this.pictureBox1.Location = new System.Drawing.Point(841, 352);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(104, 104);
             this.pictureBox1.TabIndex = 43;
@@ -465,7 +470,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(810, 319);
+            this.label19.Location = new System.Drawing.Point(810, 316);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(149, 12);
             this.label19.TabIndex = 44;
@@ -474,7 +479,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(810, 297);
+            this.label20.Location = new System.Drawing.Point(810, 296);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(149, 12);
             this.label20.TabIndex = 45;
@@ -483,7 +488,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(810, 275);
+            this.label21.Location = new System.Drawing.Point(810, 274);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(107, 12);
             this.label21.TabIndex = 46;
@@ -588,11 +593,61 @@
             this.cp_gift.Text = "礼物";
             this.cp_gift.UseVisualStyleBackColor = true;
             // 
+            // AutoStart
+            // 
+            this.AutoStart.AutoSize = true;
+            this.AutoStart.Location = new System.Drawing.Point(893, 229);
+            this.AutoStart.Name = "AutoStart";
+            this.AutoStart.Size = new System.Drawing.Size(60, 16);
+            this.AutoStart.TabIndex = 57;
+            this.AutoStart.Text = "自启动";
+            this.AutoStart.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(781, 345);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(0, 12);
+            this.label25.TabIndex = 58;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(278, 408);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(485, 12);
+            this.label26.TabIndex = 59;
+            this.label26.Text = "本插件在GITHUB上已由提莫开源，本版本为高光续更，插件免费，欢迎扫码捐助提莫队长。";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(278, 429);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(311, 12);
+            this.label27.TabIndex = 60;
+            this.label27.Text = "本版本增加翻牌名，自启动，自动更新TOKEN，线程延时。";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(278, 450);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(449, 12);
+            this.label28.TabIndex = 61;
+            this.label28.Text = "本版本GIT开源地址：https://github.com/dragon0629/Teemo.CoolQ.PocketPlugins";
+            // 
             // panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 475);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.AutoStart);
             this.Controls.Add(this.cp_gift);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.txt_longdelay);
@@ -649,7 +704,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.list_listen);
             this.Name = "panel";
-            this.Text = "监听面板3.0.9";
+            this.Text = "监听面板3.1.0";
             this.Load += new System.EventHandler(this.panel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -714,5 +769,10 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.CheckBox cp_gift;
+        private System.Windows.Forms.CheckBox AutoStart;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
     }
 }

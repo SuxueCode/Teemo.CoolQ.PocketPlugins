@@ -38,7 +38,7 @@ namespace Teemo.CoolQ.PocketPlugins
             user.PassWord = txt_password.Text;
 
 
-            string json = Common.GetUserInfo(user.UserName, user.PassWord);
+            string json = Common.GetUserInfo(user.UserName, user.PassWord, "");
             JObject obj = JObject.Parse(json);
             if((int)obj["status"] == 200)
             {
@@ -170,7 +170,7 @@ namespace Teemo.CoolQ.PocketPlugins
                 MessageBox.Show("请输入直播监听延迟时间");
                 return;
             }
-            PocketPlugins.CommonCfg.LiveDelay = int.Parse(txt_livedelay.Text);*/ 
+            PocketPlugins.CommonCfg.LiveDelay = int.Parse(txt_livedelay.Text);*/
             int timedelay = 0;
             foreach(var idol in PocketPlugins.RunTimeCfg.Keys)
             {
@@ -195,6 +195,11 @@ namespace Teemo.CoolQ.PocketPlugins
 
             /*if(txt_livedelay.Text != "")
                 configFile["LiveDelay"] = txt_livedelay.Text;*/
+
+            if (AutoStart.Checked)
+                configFile["AutoStart"] = true;
+            else
+                configFile["AutoStart"] = false;
 
             if (rb_air.Checked)
                 configFile["CoolQAir"] = true;
@@ -431,6 +436,22 @@ namespace Teemo.CoolQ.PocketPlugins
                 txt_imei.Text = PocketSetting.IMEI;
                 lab_token.Text = string.Format("Token：{0}  Token更新时间：{1}", PocketPlugins.User.PocketToken, PocketPlugins.User.TokenUpdate.ToString());
             }
+            if (jsonObj.Property("AutoStart") != null)
+            {
+                //bool auto = Convert.ToBoolean(jsonObj.["AutoStart"]);
+                if (Convert.ToBoolean(jsonObj["AutoStart"]) == true)
+                {
+                    AutoStart.Checked = true;
+                    //PocketPlugins.CommonCfg.AutoStart = true;
+                }
+
+                else
+                {
+                    AutoStart.Checked = false;
+                    //PocketPlugins.CommonCfg.AutoStart = false;
+                }
+            }
+
 
             if (jsonObj.Property("IMEI") != null)
             {
