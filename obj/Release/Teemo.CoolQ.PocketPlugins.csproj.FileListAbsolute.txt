@@ -1,0 +1,13 @@
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Release\Teemo.CoolQ.PocketPlugins.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Release\Teemo.CoolQ.PocketPlugins.pdb
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Release\Autofac.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Release\Newbe.CQP.Framework.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Release\Newtonsoft.Json.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\bin\Release\Newtonsoft.Json.xml
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Release\Teemo.CoolQ.PocketPlugins.Resource1.resources
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Release\Teemo.CoolQ.PocketPlugins.panel.resources
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Release\Teemo.CoolQ.PocketPlugins.csproj.GenerateResource.Cache
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Release\Teemo.CoolQ.PocketPlugins.csproj.CoreCompileInputs.cache
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Release\Teemo.CoolQ.PocketPlugins.dll
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Release\Teemo.CoolQ.PocketPlugins.pdb
+C:\Users\Teemo\documents\visual studio 2017\Projects\Teemo.CoolQ.PocketPlugins\Teemo.CoolQ.PocketPlugins\obj\Release\Teemo.CoolQ.PocketPlugins.csprojResolveAssemblyReference.cache
