@@ -82,6 +82,13 @@
             this.txt_longdelay = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
+            this.cp_gift = new System.Windows.Forms.CheckBox();
+            this.AutoStart = new System.Windows.Forms.CheckBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,16 +96,16 @@
             // 
             this.list_listen.FormattingEnabled = true;
             this.list_listen.ItemHeight = 12;
-            this.list_listen.Location = new System.Drawing.Point(12, 41);
+            this.list_listen.Location = new System.Drawing.Point(12, 17);
             this.list_listen.Name = "list_listen";
-            this.list_listen.Size = new System.Drawing.Size(233, 292);
+            this.list_listen.Size = new System.Drawing.Size(233, 280);
             this.list_listen.TabIndex = 0;
             this.list_listen.SelectedIndexChanged += new System.EventHandler(this.list_listen_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Location = new System.Drawing.Point(13, 315);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 1;
@@ -171,7 +178,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(125, 12);
             this.label5.TabIndex = 9;
-            this.label5.Text = "监听请按一下步骤走：";
+            this.label5.Text = "监听请按以下步骤走：";
             // 
             // txt_idolname
             // 
@@ -202,7 +209,7 @@
             // lab_find
             // 
             this.lab_find.AutoSize = true;
-            this.lab_find.Location = new System.Drawing.Point(278, 88);
+            this.lab_find.Location = new System.Drawing.Point(488, 66);
             this.lab_find.Name = "lab_find";
             this.lab_find.Size = new System.Drawing.Size(95, 12);
             this.lab_find.TabIndex = 13;
@@ -211,7 +218,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(278, 111);
+            this.label7.Location = new System.Drawing.Point(278, 97);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(413, 12);
             this.label7.TabIndex = 14;
@@ -219,15 +226,16 @@
             // 
             // txt_roomdelay
             // 
-            this.txt_roomdelay.Location = new System.Drawing.Point(351, 129);
+            this.txt_roomdelay.Location = new System.Drawing.Point(351, 117);
             this.txt_roomdelay.Name = "txt_roomdelay";
             this.txt_roomdelay.Size = new System.Drawing.Size(100, 21);
             this.txt_roomdelay.TabIndex = 15;
+            this.txt_roomdelay.TextChanged += new System.EventHandler(this.txt_roomdelay_TextChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(457, 134);
+            this.label8.Location = new System.Drawing.Point(457, 122);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 12);
             this.label8.TabIndex = 16;
@@ -236,16 +244,16 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(278, 158);
+            this.label9.Location = new System.Drawing.Point(278, 146);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(539, 12);
+            this.label9.Size = new System.Drawing.Size(491, 12);
             this.label9.TabIndex = 17;
-            this.label9.Text = "3.输入发送到的QQ群，如需多个群，请用英文状态下逗号\",\"分割！注意！消息是指当前小偶像的消息";
+            this.label9.Text = "3.输入发送到的QQ群，多个群用英文状态下逗号\",\"分割！注意！消息是指当前小偶像的消息";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(278, 210);
+            this.label11.Location = new System.Drawing.Point(278, 219);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(395, 12);
             this.label11.TabIndex = 20;
@@ -254,7 +262,7 @@
             // cb_text
             // 
             this.cb_text.AutoSize = true;
-            this.cb_text.Location = new System.Drawing.Point(278, 230);
+            this.cb_text.Location = new System.Drawing.Point(278, 239);
             this.cb_text.Name = "cb_text";
             this.cb_text.Size = new System.Drawing.Size(72, 16);
             this.cb_text.TabIndex = 21;
@@ -264,7 +272,7 @@
             // cb_image
             // 
             this.cb_image.AutoSize = true;
-            this.cb_image.Location = new System.Drawing.Point(360, 230);
+            this.cb_image.Location = new System.Drawing.Point(360, 239);
             this.cb_image.Name = "cb_image";
             this.cb_image.Size = new System.Drawing.Size(72, 16);
             this.cb_image.TabIndex = 22;
@@ -274,7 +282,7 @@
             // cb_audio
             // 
             this.cb_audio.AutoSize = true;
-            this.cb_audio.Location = new System.Drawing.Point(442, 230);
+            this.cb_audio.Location = new System.Drawing.Point(442, 239);
             this.cb_audio.Name = "cb_audio";
             this.cb_audio.Size = new System.Drawing.Size(72, 16);
             this.cb_audio.TabIndex = 23;
@@ -284,7 +292,7 @@
             // cb_fanpai
             // 
             this.cb_fanpai.AutoSize = true;
-            this.cb_fanpai.Location = new System.Drawing.Point(524, 230);
+            this.cb_fanpai.Location = new System.Drawing.Point(524, 239);
             this.cb_fanpai.Name = "cb_fanpai";
             this.cb_fanpai.Size = new System.Drawing.Size(72, 16);
             this.cb_fanpai.TabIndex = 24;
@@ -294,7 +302,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(278, 257);
+            this.label12.Location = new System.Drawing.Point(278, 266);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(425, 12);
             this.label12.TabIndex = 25;
@@ -303,7 +311,7 @@
             // rb_air
             // 
             this.rb_air.AutoSize = true;
-            this.rb_air.Location = new System.Drawing.Point(278, 278);
+            this.rb_air.Location = new System.Drawing.Point(278, 287);
             this.rb_air.Name = "rb_air";
             this.rb_air.Size = new System.Drawing.Size(65, 16);
             this.rb_air.TabIndex = 26;
@@ -314,7 +322,7 @@
             // rb_pro
             // 
             this.rb_pro.AutoSize = true;
-            this.rb_pro.Location = new System.Drawing.Point(359, 278);
+            this.rb_pro.Location = new System.Drawing.Point(359, 287);
             this.rb_pro.Name = "rb_pro";
             this.rb_pro.Size = new System.Drawing.Size(65, 16);
             this.rb_pro.TabIndex = 27;
@@ -325,7 +333,7 @@
             // cb_video
             // 
             this.cb_video.AutoSize = true;
-            this.cb_video.Location = new System.Drawing.Point(603, 230);
+            this.cb_video.Location = new System.Drawing.Point(603, 239);
             this.cb_video.Name = "cb_video";
             this.cb_video.Size = new System.Drawing.Size(72, 16);
             this.cb_video.TabIndex = 28;
@@ -335,7 +343,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(278, 302);
+            this.label13.Location = new System.Drawing.Point(278, 311);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(503, 12);
             this.label13.TabIndex = 29;
@@ -344,7 +352,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(277, 323);
+            this.label14.Location = new System.Drawing.Point(277, 332);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(503, 12);
             this.label14.TabIndex = 30;
@@ -354,17 +362,17 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(278, 399);
+            this.label15.Location = new System.Drawing.Point(665, 372);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(552, 12);
+            this.label15.Size = new System.Drawing.Size(162, 12);
             this.label15.TabIndex = 31;
-            this.label15.Text = "教学都到这个地步了，还不会我也没办法了，真鸡儿丢人，退群吧！右边还请多投食，谢谢！->";
+            this.label15.Text = "右边还请多投食，谢谢！->";
             // 
             // btn_idoladd
             // 
-            this.btn_idoladd.Location = new System.Drawing.Point(278, 349);
+            this.btn_idoladd.Location = new System.Drawing.Point(775, 146);
             this.btn_idoladd.Name = "btn_idoladd";
-            this.btn_idoladd.Size = new System.Drawing.Size(75, 37);
+            this.btn_idoladd.Size = new System.Drawing.Size(91, 40);
             this.btn_idoladd.TabIndex = 32;
             this.btn_idoladd.Text = "添加";
             this.btn_idoladd.UseVisualStyleBackColor = true;
@@ -372,9 +380,9 @@
             // 
             // btn_run
             // 
-            this.btn_run.Location = new System.Drawing.Point(480, 349);
+            this.btn_run.Location = new System.Drawing.Point(539, 359);
             this.btn_run.Name = "btn_run";
-            this.btn_run.Size = new System.Drawing.Size(75, 37);
+            this.btn_run.Size = new System.Drawing.Size(120, 37);
             this.btn_run.TabIndex = 33;
             this.btn_run.Text = "运行";
             this.btn_run.UseVisualStyleBackColor = true;
@@ -383,7 +391,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(278, 430);
+            this.label16.Location = new System.Drawing.Point(665, 44);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 12);
             this.label16.TabIndex = 34;
@@ -391,16 +399,16 @@
             // 
             // txt_proxy
             // 
-            this.txt_proxy.Location = new System.Drawing.Point(341, 426);
+            this.txt_proxy.Location = new System.Drawing.Point(728, 40);
             this.txt_proxy.Name = "txt_proxy";
-            this.txt_proxy.Size = new System.Drawing.Size(173, 21);
+            this.txt_proxy.Size = new System.Drawing.Size(145, 21);
             this.txt_proxy.TabIndex = 35;
             // 
             // btn_configsave
             // 
-            this.btn_configsave.Location = new System.Drawing.Point(581, 349);
+            this.btn_configsave.Location = new System.Drawing.Point(407, 359);
             this.btn_configsave.Name = "btn_configsave";
-            this.btn_configsave.Size = new System.Drawing.Size(75, 37);
+            this.btn_configsave.Size = new System.Drawing.Size(120, 37);
             this.btn_configsave.TabIndex = 36;
             this.btn_configsave.Text = "保存配置";
             this.btn_configsave.UseVisualStyleBackColor = true;
@@ -408,9 +416,9 @@
             // 
             // btn_loadconfig
             // 
-            this.btn_loadconfig.Location = new System.Drawing.Point(682, 349);
+            this.btn_loadconfig.Location = new System.Drawing.Point(276, 359);
             this.btn_loadconfig.Name = "btn_loadconfig";
-            this.btn_loadconfig.Size = new System.Drawing.Size(75, 37);
+            this.btn_loadconfig.Size = new System.Drawing.Size(120, 37);
             this.btn_loadconfig.TabIndex = 37;
             this.btn_loadconfig.Text = "加载配置";
             this.btn_loadconfig.UseVisualStyleBackColor = true;
@@ -418,7 +426,7 @@
             // 
             // btn_proxyapply
             // 
-            this.btn_proxyapply.Location = new System.Drawing.Point(522, 424);
+            this.btn_proxyapply.Location = new System.Drawing.Point(879, 38);
             this.btn_proxyapply.Name = "btn_proxyapply";
             this.btn_proxyapply.Size = new System.Drawing.Size(75, 23);
             this.btn_proxyapply.TabIndex = 38;
@@ -429,7 +437,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(280, 132);
+            this.label17.Location = new System.Drawing.Point(280, 120);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 12);
             this.label17.TabIndex = 39;
@@ -437,16 +445,16 @@
             // 
             // txt_qqgroups
             // 
-            this.txt_qqgroups.Location = new System.Drawing.Point(280, 176);
+            this.txt_qqgroups.Location = new System.Drawing.Point(282, 165);
             this.txt_qqgroups.Name = "txt_qqgroups";
             this.txt_qqgroups.Size = new System.Drawing.Size(393, 21);
             this.txt_qqgroups.TabIndex = 41;
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(379, 349);
+            this.btn_delete.Location = new System.Drawing.Point(170, 307);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(75, 37);
+            this.btn_delete.Size = new System.Drawing.Size(75, 30);
             this.btn_delete.TabIndex = 42;
             this.btn_delete.Text = "删除";
             this.btn_delete.UseVisualStyleBackColor = true;
@@ -454,7 +462,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(834, 341);
+            this.pictureBox1.Location = new System.Drawing.Point(841, 352);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(104, 104);
             this.pictureBox1.TabIndex = 43;
@@ -463,7 +471,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(810, 319);
+            this.label19.Location = new System.Drawing.Point(810, 312);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(149, 12);
             this.label19.TabIndex = 44;
@@ -472,7 +480,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(810, 297);
+            this.label20.Location = new System.Drawing.Point(810, 296);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(149, 12);
             this.label20.TabIndex = 45;
@@ -481,7 +489,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(810, 275);
+            this.label21.Location = new System.Drawing.Point(810, 279);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(107, 12);
             this.label21.TabIndex = 46;
@@ -490,7 +498,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(810, 253);
+            this.label22.Location = new System.Drawing.Point(810, 262);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(125, 12);
             this.label22.TabIndex = 47;
@@ -499,7 +507,7 @@
             // cb_live
             // 
             this.cb_live.AutoSize = true;
-            this.cb_live.Location = new System.Drawing.Point(679, 230);
+            this.cb_live.Location = new System.Drawing.Point(679, 239);
             this.cb_live.Name = "cb_live";
             this.cb_live.Size = new System.Drawing.Size(72, 16);
             this.cb_live.TabIndex = 48;
@@ -509,7 +517,7 @@
             // cb_flip
             // 
             this.cb_flip.AutoSize = true;
-            this.cb_flip.Location = new System.Drawing.Point(758, 230);
+            this.cb_flip.Location = new System.Drawing.Point(758, 239);
             this.cb_flip.Name = "cb_flip";
             this.cb_flip.Size = new System.Drawing.Size(72, 16);
             this.cb_flip.TabIndex = 49;
@@ -545,7 +553,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(511, 132);
+            this.label18.Location = new System.Drawing.Point(511, 120);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(65, 12);
             this.label18.TabIndex = 53;
@@ -553,7 +561,7 @@
             // 
             // txt_longdelay
             // 
-            this.txt_longdelay.Location = new System.Drawing.Point(581, 129);
+            this.txt_longdelay.Location = new System.Drawing.Point(581, 117);
             this.txt_longdelay.Name = "txt_longdelay";
             this.txt_longdelay.Size = new System.Drawing.Size(100, 21);
             this.txt_longdelay.TabIndex = 54;
@@ -561,7 +569,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(687, 134);
+            this.label23.Location = new System.Drawing.Point(687, 122);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(29, 12);
             this.label23.TabIndex = 16;
@@ -574,13 +582,85 @@
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(53, 12);
             this.label24.TabIndex = 55;
-            this.label24.Text = "20180205";
+            this.label24.Text = "20180926";
+            // 
+            // cp_gift
+            // 
+            this.cp_gift.AutoSize = true;
+            this.cp_gift.Location = new System.Drawing.Point(836, 239);
+            this.cp_gift.Name = "cp_gift";
+            this.cp_gift.Size = new System.Drawing.Size(48, 16);
+            this.cp_gift.TabIndex = 56;
+            this.cp_gift.Text = "礼物";
+            this.cp_gift.UseVisualStyleBackColor = true;
+            // 
+            // AutoStart
+            // 
+            this.AutoStart.AutoSize = true;
+            this.AutoStart.Location = new System.Drawing.Point(893, 238);
+            this.AutoStart.Name = "AutoStart";
+            this.AutoStart.Size = new System.Drawing.Size(60, 16);
+            this.AutoStart.TabIndex = 57;
+            this.AutoStart.Text = "自启动";
+            this.AutoStart.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(781, 345);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(0, 12);
+            this.label25.TabIndex = 58;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(278, 408);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(485, 12);
+            this.label26.TabIndex = 59;
+            this.label26.Text = "本插件在GITHUB上已由提莫开源，本版本为高光续更，插件免费，欢迎扫码捐助提莫队长。";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(278, 429);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(311, 12);
+            this.label27.TabIndex = 60;
+            this.label27.Text = "本版本增加翻牌名，自启动，自动更新TOKEN，线程延时。";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(278, 450);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(449, 12);
+            this.label28.TabIndex = 61;
+            this.label28.Text = "本版本GIT开源地址：https://github.com/dragon0629/Teemo.CoolQ.PocketPlugins";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label29.Location = new System.Drawing.Point(278, 194);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(461, 12);
+            this.label29.TabIndex = 62;
+            this.label29.Text = "如果小偶像添加信息错误,请删除之后重新填写重新添加,直接修改点配置保存是无效的";
             // 
             // panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 475);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.AutoStart);
+            this.Controls.Add(this.cp_gift);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.txt_longdelay);
             this.Controls.Add(this.label18);
@@ -636,7 +716,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.list_listen);
             this.Name = "panel";
-            this.Text = "监听面板";
+            this.Text = "监听面板3.1.0";
+            this.Load += new System.EventHandler(this.panel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -699,5 +780,12 @@
         private System.Windows.Forms.TextBox txt_longdelay;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.CheckBox cp_gift;
+        private System.Windows.Forms.CheckBox AutoStart;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
     }
 }

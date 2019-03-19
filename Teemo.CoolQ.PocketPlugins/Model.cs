@@ -11,8 +11,11 @@ namespace Teemo.CoolQ.PocketPlugins
     public class PocketSetting
     {
         public static string IMEI { get; set; }
-        public static int MaxListen { get; set; } = 3;
+        public static int MaxListen { get; set; } = 5;
         public static long Interval { get; set; } = 60;
+        public static int ShortDelay { get; set; }
+        public static int LongDelay { get; set; }
+        public bool AutoStart { get; set; }
     }
     public class UserInfo
     {
@@ -27,8 +30,8 @@ namespace Teemo.CoolQ.PocketPlugins
         public string IdolName { get; set; }
         public int RoomId { get; set; }
         public int Delay { get; set; }
-        public int ShortDelay { get; set; } = 7000;
-        public int LongDelay { get; set; } = 30000;
+        public int ShortDelay { get; set; }
+        public int LongDelay { get; set; }
         public bool TransmitText { get; set; }
         public bool TransmitImage { get; set; }
         public bool TransmitAudio { get; set; }
@@ -36,7 +39,7 @@ namespace Teemo.CoolQ.PocketPlugins
         public bool TransmitFanpai { get; set; }
         public bool TransmitFlip { get; set; }
         public bool TransmitLive { get; set; }
-        public bool TransmitGift { get; set; } = false;
+        public bool TransmitGift { get; set; } 
         public DateTime UpdateTime { get; set; }
         //public bool Pro { get; set; }
         public bool First { get; set; }
@@ -58,6 +61,7 @@ namespace Teemo.CoolQ.PocketPlugins
         //public int LiveDelay { get; set; }
         public bool CoolQAir { get; set; }
         public bool LiveAtAll { get; set; }
+        public bool AutoStart { get; set; }
     }
 
     public class PocketProxy
@@ -83,6 +87,5 @@ namespace Teemo.CoolQ.PocketPlugins
     }
 
     public class IPNotValue : Exception { }
-
 
 }

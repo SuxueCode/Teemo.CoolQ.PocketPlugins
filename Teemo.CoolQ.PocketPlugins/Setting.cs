@@ -37,7 +37,8 @@ namespace Teemo.CoolQ.PocketPlugins
             user.UserName = txt_phone.Text;
             user.PassWord = txt_password.Text;
 
-            string json = Common.GetUserInfo(user.UserName, user.PassWord);
+
+            string json = Common.GetUserInfo(user.UserName, user.PassWord, "");
             JObject obj = JObject.Parse(json);
             if((int)obj["status"] == 200)
             {
@@ -88,7 +89,7 @@ namespace Teemo.CoolQ.PocketPlugins
                 return;
             }
 
-            if (int.Parse(txt_roomdelay.Text) < 5000 || int.Parse(txt_longdelay.Text) < 20000)
+            if (int.Parse(txt_roomdelay.Text) < 5000 || int.Parse(txt_longdelay.Text) < 25000)
             {
                 MessageBox.Show("短延迟不能低于5000，长延迟不能低于20000", "错误");
                 return;
@@ -108,7 +109,7 @@ namespace Teemo.CoolQ.PocketPlugins
             cfg.TransmitVideo = cb_video.Checked;
             cfg.TransmitImage = cb_image.Checked;
             cfg.TransmitFanpai = cb_fanpai.Checked;
-            //cfg.TransmitGift = cb_flip.Checked;
+            cfg.TransmitGift = cb_flip.Checked;
             cfg.TransmitLive = cb_live.Checked;
             cfg.TransmitFlip = cb_flip.Checked;
 
@@ -170,9 +171,11 @@ namespace Teemo.CoolQ.PocketPlugins
                 return;
             }
             PocketPlugins.CommonCfg.LiveDelay = int.Parse(txt_livedelay.Text);*/
+            int timedelay = 0;
             foreach(var idol in PocketPlugins.RunTimeCfg.Keys)
             {
-                Common.StartListenRoomTask(idol.ToString());
+                Common.StartListenRoomTask(idol.ToString(), timedelay);
+                timedelay = timedelay + 5000;
             }
 
             MessageBox.Show("任务启动完毕，请留意酷Q日志以及小偶像房间消息，欢迎多给开发投食", "完成");
@@ -186,10 +189,17 @@ namespace Teemo.CoolQ.PocketPlugins
                 configFile["User"] = JToken.FromObject(PocketPlugins.User);
 
             configFile["IMEI"] = PocketSetting.IMEI;
-            
+            configFile["ShortDelay"] = PocketSetting.ShortDelay = int.Parse(txt_roomdelay.Text);
+            configFile["LongDelay"] = PocketSetting.LongDelay = int.Parse(txt_longdelay.Text);
+
 
             /*if(txt_livedelay.Text != "")
                 configFile["LiveDelay"] = txt_livedelay.Text;*/
+
+            if (AutoStart.Checked)
+                configFile["AutoStart"] = true;
+            else
+                configFile["AutoStart"] = false;
 
             if (rb_air.Checked)
                 configFile["CoolQAir"] = true;
@@ -280,8 +290,14 @@ namespace Teemo.CoolQ.PocketPlugins
             ListenRunTimeConfig config = (ListenRunTimeConfig)list_listen.SelectedItem;
             txt_idolname.Text = config.IdolName;
             roomid = config.RoomId.ToString();
-            txt_roomdelay.Text = config.ShortDelay.ToString();
-            txt_longdelay.Text = config.LongDelay.ToString();
+            txt_roomdelay.Text = PocketSetting.ShortDelay.ToString();
+            if (int.Parse(txt_roomdelay.Text) < 5000)
+                txt_roomdelay.Text = "5000";
+            txt_longdelay.Text = PocketSetting.LongDelay.ToString();
+            if (int.Parse(txt_longdelay.Text) < 25000)
+                txt_longdelay.Text = "25000";
+            //           txt_roomdelay.Text = config.ShortDelay.ToString();
+            //           txt_longdelay.Text = config.LongDelay.ToString();
 
             cb_audio.Checked = config.TransmitAudio;
             cb_image.Checked = config.TransmitImage;
@@ -290,6 +306,7 @@ namespace Teemo.CoolQ.PocketPlugins
             cb_video.Checked = config.TransmitVideo;
             cb_live.Checked = config.TransmitLive;
             cb_flip.Checked = config.TransmitFlip;
+            cp_gift.Checked = config.TransmitGift;
 
             if (config.QQGroups.Count == 1)
                 txt_qqgroups.Text = config.QQGroups[0].ToString();
@@ -382,6 +399,79 @@ namespace Teemo.CoolQ.PocketPlugins
         private void btn_change_imei_Click(object sender, EventArgs e)
         {
             PocketSetting.IMEI = txt_imei.Text;
+        }
+
+        private void txt_roomdelay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel_Load(object sender, EventArgs e)
+        {
+            if (txt_roomdelay.Text == "")
+                txt_roomdelay.Text = "10000";
+            if (txt_longdelay.Text == "")
+                txt_longdelay.Text = "25000";
+            cb_audio.Checked = true;
+            cb_image.Checked = true;
+            cb_fanpai.Checked = true;
+            cb_text.Checked = true;
+            cb_video.Checked = true;
+            cb_live.Checked = true;
+            cb_flip.Checked = true;
+            cp_gift.Checked = true;
+            if (!File.Exists("PocketConfig.json"))
+            {
+                MessageBox.Show("配置文件不存在！请检查文件名是否正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string json = File.ReadAllText("PocketConfig.json");
+            JObject jsonObj = JObject.Parse(json);
+
+            if (jsonObj.Property("User") != null)
+            {
+                PocketPlugins.User = JsonConvert.DeserializeObject<UserInfo>(jsonObj["User"].ToString());
+                txt_phone.Text = PocketPlugins.User.UserName;
+                txt_password.Text = PocketPlugins.User.PassWord;
+                txt_imei.Text = PocketSetting.IMEI;
+                lab_token.Text = string.Format("Token：{0}  Token更新时间：{1}", PocketPlugins.User.PocketToken, PocketPlugins.User.TokenUpdate.ToString());
+            }
+            if (jsonObj.Property("AutoStart") != null)
+            {
+                //bool auto = Convert.ToBoolean(jsonObj.["AutoStart"]);
+                if (Convert.ToBoolean(jsonObj["AutoStart"]) == true)
+                {
+                    AutoStart.Checked = true;
+                    //PocketPlugins.CommonCfg.AutoStart = true;
+                }
+
+                else
+                {
+                    AutoStart.Checked = false;
+                    //PocketPlugins.CommonCfg.AutoStart = false;
+                }
+            }
+
+
+            if (jsonObj.Property("IMEI") != null)
+            {
+                PocketSetting.IMEI = jsonObj["IMEI"].ToString();
+                txt_imei.Text = PocketSetting.IMEI;
+            }
+            if (jsonObj.Property("CoolQAir") != null)
+            {
+                bool Air = bool.Parse(jsonObj["CoolQAir"].ToString());
+                if (Air)
+                {
+                    rb_air.Checked = true;
+                    PocketPlugins.CommonCfg.CoolQAir = true;
+                }
+                else
+                {
+                    rb_pro.Checked = true;
+                    PocketPlugins.CommonCfg.CoolQAir = false;
+                }
+            }
         }
     }
 }
